@@ -2,7 +2,7 @@
 
 This tool is a custom windows application to help with android ADB commands.
 
-- Note: Can only pull files from a directory.
+- Note: This tool is specific to Robotics.
 
 It works with both USB and WiFi devices.
 
