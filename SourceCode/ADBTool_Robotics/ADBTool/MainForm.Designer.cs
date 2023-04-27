@@ -50,13 +50,12 @@
             txtbxExLocalDirectory = new TextBox();
             txtbxExDeviceDirectory = new TextBox();
             gboxSingleCom = new GroupBox();
+            btnDelDir = new Button();
             btnExSetPort = new Button();
             gboxExSelectedDevice = new GroupBox();
             btnExRefresh = new Button();
-            btnExAddDevice = new Button();
             btnExDisconnect = new Button();
             btnExConnect = new Button();
-            btnExRemoveDevice = new Button();
             cboxExSelectedDevice = new ComboBox();
             statusTimer = new System.Windows.Forms.Timer(components);
             toolTips = new ToolTip(components);
@@ -122,7 +121,7 @@
             // clearConsoleToolStripMenuItem
             // 
             clearConsoleToolStripMenuItem.Name = "clearConsoleToolStripMenuItem";
-            clearConsoleToolStripMenuItem.Size = new Size(180, 22);
+            clearConsoleToolStripMenuItem.Size = new Size(158, 22);
             clearConsoleToolStripMenuItem.Text = "Clear Console";
             clearConsoleToolStripMenuItem.ToolTipText = "Clears The Console\r\n";
             clearConsoleToolStripMenuItem.Click += clearConsoleToolStripMenuItem_Click;
@@ -130,7 +129,7 @@
             // tsitemResetDefault
             // 
             tsitemResetDefault.Name = "tsitemResetDefault";
-            tsitemResetDefault.Size = new Size(180, 22);
+            tsitemResetDefault.Size = new Size(158, 22);
             tsitemResetDefault.Text = "Reset To Default";
             tsitemResetDefault.ToolTipText = "Reset All Program Settings To Defaults";
             tsitemResetDefault.Click += tsitemResetDefault_Click;
@@ -211,7 +210,7 @@
             gboxFileCom.Controls.Add(txtbxExDeviceDirectory);
             gboxFileCom.Location = new Point(136, 61);
             gboxFileCom.Name = "gboxFileCom";
-            gboxFileCom.Size = new Size(561, 205);
+            gboxFileCom.Size = new Size(561, 101);
             gboxFileCom.TabIndex = 3;
             gboxFileCom.TabStop = false;
             gboxFileCom.Text = "File Commands";
@@ -270,13 +269,25 @@
             // 
             // gboxSingleCom
             // 
+            gboxSingleCom.Controls.Add(btnDelDir);
             gboxSingleCom.Controls.Add(btnExSetPort);
             gboxSingleCom.Location = new Point(6, 61);
             gboxSingleCom.Name = "gboxSingleCom";
-            gboxSingleCom.Size = new Size(124, 165);
+            gboxSingleCom.Size = new Size(124, 101);
             gboxSingleCom.TabIndex = 2;
             gboxSingleCom.TabStop = false;
             gboxSingleCom.Text = "Single Commands";
+            // 
+            // btnDelDir
+            // 
+            btnDelDir.Enabled = false;
+            btnDelDir.Location = new Point(6, 51);
+            btnDelDir.Name = "btnDelDir";
+            btnDelDir.Size = new Size(112, 23);
+            btnDelDir.TabIndex = 23;
+            btnDelDir.Text = "Delete Directory";
+            btnDelDir.UseVisualStyleBackColor = true;
+            btnDelDir.Click += btnDelDir_Click;
             // 
             // btnExSetPort
             // 
@@ -293,14 +304,12 @@
             // gboxExSelectedDevice
             // 
             gboxExSelectedDevice.Controls.Add(btnExRefresh);
-            gboxExSelectedDevice.Controls.Add(btnExAddDevice);
             gboxExSelectedDevice.Controls.Add(btnExDisconnect);
             gboxExSelectedDevice.Controls.Add(btnExConnect);
-            gboxExSelectedDevice.Controls.Add(btnExRemoveDevice);
             gboxExSelectedDevice.Controls.Add(cboxExSelectedDevice);
             gboxExSelectedDevice.Location = new Point(6, 6);
             gboxExSelectedDevice.Name = "gboxExSelectedDevice";
-            gboxExSelectedDevice.Size = new Size(299, 48);
+            gboxExSelectedDevice.Size = new Size(231, 48);
             gboxExSelectedDevice.TabIndex = 1;
             gboxExSelectedDevice.TabStop = false;
             gboxExSelectedDevice.Text = "Selected Device";
@@ -317,23 +326,11 @@
             btnExRefresh.UseVisualStyleBackColor = true;
             btnExRefresh.Click += btnExRefresh_Click;
             // 
-            // btnExAddDevice
-            // 
-            btnExAddDevice.Image = Properties.Resources.Add;
-            btnExAddDevice.Location = new Point(163, 19);
-            btnExAddDevice.Name = "btnExAddDevice";
-            btnExAddDevice.Size = new Size(27, 23);
-            btnExAddDevice.TabIndex = 1;
-            btnExAddDevice.TextImageRelation = TextImageRelation.ImageBeforeText;
-            toolTips.SetToolTip(btnExAddDevice, "Add WiFi Device");
-            btnExAddDevice.UseVisualStyleBackColor = true;
-            btnExAddDevice.Click += btnExAddDevice_Click;
-            // 
             // btnExDisconnect
             // 
             btnExDisconnect.Enabled = false;
             btnExDisconnect.Image = Properties.Resources.Disconnect;
-            btnExDisconnect.Location = new Point(229, 19);
+            btnExDisconnect.Location = new Point(196, 19);
             btnExDisconnect.Name = "btnExDisconnect";
             btnExDisconnect.Size = new Size(27, 23);
             btnExDisconnect.TabIndex = 3;
@@ -346,7 +343,7 @@
             // 
             btnExConnect.Enabled = false;
             btnExConnect.Image = Properties.Resources.Connect;
-            btnExConnect.Location = new Point(196, 19);
+            btnExConnect.Location = new Point(163, 19);
             btnExConnect.Name = "btnExConnect";
             btnExConnect.Size = new Size(27, 23);
             btnExConnect.TabIndex = 1;
@@ -354,19 +351,6 @@
             toolTips.SetToolTip(btnExConnect, "Connect To WiFi Device");
             btnExConnect.UseVisualStyleBackColor = true;
             btnExConnect.Click += btnExConnect_Click;
-            // 
-            // btnExRemoveDevice
-            // 
-            btnExRemoveDevice.Enabled = false;
-            btnExRemoveDevice.Image = Properties.Resources.Remove;
-            btnExRemoveDevice.Location = new Point(262, 19);
-            btnExRemoveDevice.Name = "btnExRemoveDevice";
-            btnExRemoveDevice.Size = new Size(27, 23);
-            btnExRemoveDevice.TabIndex = 2;
-            btnExRemoveDevice.TextImageRelation = TextImageRelation.ImageBeforeText;
-            toolTips.SetToolTip(btnExRemoveDevice, "Remove Selected WiFi Device");
-            btnExRemoveDevice.UseVisualStyleBackColor = true;
-            btnExRemoveDevice.Click += btnExRemoveDevice_Click;
             // 
             // cboxExSelectedDevice
             // 
@@ -427,13 +411,9 @@
         private GroupBox gboxCommands;
         private ToolStripMenuItem tsitemResetDefault;
         private TabControl tabControl1;
-        private TabPage tbUSB;
-        private TabPage tbWiFi;
         private System.Windows.Forms.Timer statusTimer;
         private GroupBox gboxWiFiSelectedDevice;
-        private Button btnWiFiAdd;
         private ComboBox cboxWiFiSelectedDevice;
-        private Button btnWiFiRemove;
         private GroupBox gboxUSBSelectedDevice;
         private ComboBox cboxUSBSelectedDevice;
         private Button btnUSBRefresh;
@@ -456,8 +436,6 @@
         private Button btnExRefresh;
         private Button btnExDisconnect;
         private Button btnExConnect;
-        private Button btnExRemoveDevice;
-        private Button btnExAddDevice;
         private ComboBox cboxExSelectedDevice;
         private GroupBox gboxFileCom;
         private GroupBox gboxSingleCom;
@@ -467,5 +445,6 @@
         private TextBox txtbxExLocalDirectory;
         private TextBox txtbxExDeviceDirectory;
         private Button btnExSetPort;
+        private Button btnDelDir;
     }
 }

@@ -8,15 +8,21 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
     <FileVersion>1.1.0.0</FileVersion>
-    <ApplicationIcon>Images\App_Icons\app_icon.ico</ApplicationIcon>
+    <ApplicationIcon>Images\app_icon.ico</ApplicationIcon>
+    <StartupObject>ADBTool_Robotics.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Images\App_Icons\app_icon.ico" />
+    <Content Include="Images\app_icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="bin\Debug\net6.0-windows\Images\app_icon.ico" />
+    <None Include="bin\Debug\net6.0-windows\Images\Connect.png" />
+    <None Include="bin\Debug\net6.0-windows\Images\Delete.png" />
+    <None Include="bin\Debug\net6.0-windows\Images\Disconnect.png" />
+    <None Include="bin\Debug\net6.0-windows\Images\Refresh.png" />
   </ItemGroup>
 
   <ItemGroup>

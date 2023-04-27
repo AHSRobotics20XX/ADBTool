@@ -4,7 +4,7 @@
     <_LastSelectedProfileId>C:\VisualStudioProjects\ADBTool\ADBTool\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="AddDeviceForm.cs">
+    <Compile Update="DeleteDirectoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="MainForm.cs">

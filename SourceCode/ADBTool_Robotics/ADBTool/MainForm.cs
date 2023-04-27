@@ -1,4 +1,3 @@
-using ADBHelper;
 using System.Diagnostics;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -16,9 +15,7 @@ namespace ADBTool_Robotics
         private string currentDeviceType;
         private int currentDeviceIndex;
 
-
         private string wiFiStatus;
-        private bool robotics;
 
         public MainForm()
         {
@@ -34,6 +31,8 @@ namespace ADBTool_Robotics
             deviceHandler.DevicePort = settingsHandler.DevicePort;
             deviceHandler.DeviceDirectory = settingsHandler.DeviceDirectory;
 
+            deviceHandler.AddDevice(new WiFiDevice("192.168.49.1", "5555"));
+
             statusTimer.Start();
             lblVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
@@ -43,7 +42,6 @@ namespace ADBTool_Robotics
             UpdateStatus();
 
             OutputToConsole("Server has started");
-            deviceHandler.ShowDeviceList();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -92,23 +90,31 @@ namespace ADBTool_Robotics
             if (!cboxExSelectedDevice.Text.Equals(""))
             {
                 currentDeviceIndex = cboxExSelectedDevice.SelectedIndex;
+                currentDeviceType = deviceHandler.DeviceList[currentDeviceIndex].DeviceType;
                 txtbxExDeviceDirectory.Text = deviceHandler.DeviceList[currentDeviceIndex].DeviceDirectory;
 
-                if (cboxExSelectedDevice.Text.Contains("."))
+
+                if (currentDeviceType.Equals("WiFi"))
                 {
-                    EnableWiFiItems();
-                    DisableUSBItems();
-                    currentDeviceType = "WiFi";
+                    //If the device is a WiFi Device
+                    btnExSetPort.Enabled = false;
+                    btnExConnect.Enabled = true;
+                    btnExDisconnect.Enabled = true;
+
+                    currentWiFiDeviceName = cboxExSelectedDevice.Text;
                 }
                 else
                 {
-                    DisableWiFiItems();
-                    EnableUSBItems();
+                    //If the device is a USB Device
+                    btnExSetPort.Enabled = true;
+                    btnExConnect.Enabled = false;
+                    btnExDisconnect.Enabled = false;
+
                     currentUSBDeviceName = cboxExSelectedDevice.Text;
-                    currentDeviceType = "USB";
                 }
 
-                //Where both WiFi and USB Items are enable and disabled
+                //If the device is a WiFi or USB Device
+                btnDelDir.Enabled = true;
                 txtbxExLocalDirectory.Enabled = true;
                 txtbxExDeviceDirectory.Enabled = true;
                 btnExBrowse.Enabled = true;
@@ -118,23 +124,12 @@ namespace ADBTool_Robotics
                 txtbxExLocalDirectory.Enabled = false;
                 txtbxExDeviceDirectory.Enabled = false;
                 btnExBrowse.Enabled = false;
+                btnDelDir.Enabled = false;
             }
         }
         private void btnExRefresh_Click(object sender, EventArgs e)
         {
             ExRefresh(cboxExSelectedDevice);
-        }
-        private void btnExAddDevice_Click(object sender, EventArgs e)
-        {
-            AddDeviceForm addDeviceForm = new AddDeviceForm();
-            addDeviceForm.ShowDialog();
-
-            if (!addDeviceForm.DeviceIP.Equals("") && !addDeviceForm.DevicePort.Equals(""))
-            {
-                deviceHandler.AddDevice(new WiFiDevice(addDeviceForm.DeviceIP, addDeviceForm.DevicePort));
-                ExRefresh(cboxExSelectedDevice);
-                OutputToConsole("Device has been added");
-            }
         }
         private void btnExConnect_Click(object sender, EventArgs e)
         {
@@ -146,8 +141,6 @@ namespace ADBTool_Robotics
                 {
                     UseADB("disconnect", true);
                 }
-
-
 
                 if (!UseADB("connect " + currentWiFiDeviceName, true).First().StartsWith("cannot"))
                 {
@@ -170,38 +163,6 @@ namespace ADBTool_Robotics
 
             wiFiStatus = "disconnected";
             UpdateStatus();
-        }
-        private void btnExRemoveDevice_Click(object sender, EventArgs e)
-        {
-            if (!cboxExSelectedDevice.Text.Equals(""))
-            {
-                string line = cboxExSelectedDevice.Text;
-
-                if (wiFiStatus.Equals("connected"))
-                {
-                    UseADB("disconnect", true);
-
-                    btnExDisconnect.Enabled = false;
-
-                    wiFiStatus = "disconnected";
-                    UpdateStatus();
-                }
-
-
-
-                if (line.Contains("."))
-                {
-                    string ip = helperHandler.StringBeforeDelimiter(line, ":");
-                    string port = helperHandler.StringAfterDelimiter(line, ":");
-                    deviceHandler.RemoveDevice(ip, port);
-                    cboxExSelectedDevice.Items.RemoveAt(cboxExSelectedDevice.SelectedIndex);
-                    DisableWiFiItems();
-                }
-                else
-                {
-                    OutputToConsole("Please select a device to remove");
-                }
-            }
         }
         private void btnExSetPort_Click(object sender, EventArgs e)
         {
@@ -250,17 +211,17 @@ namespace ADBTool_Robotics
         {
             if (cboxExSelectedDevice.Text.Contains("."))
             {
-                UseADB("-s " + currentWiFiDeviceName + " pull " + txtbxExDeviceDirectory.Text.ToString() + " " + txtbxExLocalDirectory.Text.ToString(), true);
+                UseADB("-s " + currentWiFiDeviceName + " pull " + txtbxExDeviceDirectory.Text.ToString() + " " + txtbxExLocalDirectory.Text.ToString() + "/CustomLog/", true);
             }
             else
             {
-                UseADB("-s " + currentUSBDeviceName + " pull " + txtbxExDeviceDirectory.Text.ToString() + " " + txtbxExLocalDirectory.Text.ToString(), true);
+                UseADB("-s " + currentUSBDeviceName + " pull " + txtbxExDeviceDirectory.Text.ToString() + " " + txtbxExLocalDirectory.Text.ToString() + "/CustomLog/", true);
             }
         }
         #endregion
 
         #region Other
-        private List<String> UseADB(String command, bool outputToConsole)
+        public List<String> UseADB(String command, bool outputToConsole)
         {
             WorkerForm workerForm = new WorkerForm();
             workerForm.ADBInput = command;
@@ -313,25 +274,6 @@ namespace ADBTool_Robotics
                 tslblStatus.BackColor = Color.Yellow;
             }
         }
-        private void EnableUSBItems()
-        {
-            btnExSetPort.Enabled = true;
-        }
-        private void DisableUSBItems()
-        {
-            btnExSetPort.Enabled = false;
-        }
-        private void EnableWiFiItems()
-        {
-            btnExConnect.Enabled = true;
-            btnExRemoveDevice.Enabled = true;
-        }
-        private void DisableWiFiItems()
-        {
-            btnExConnect.Enabled = false;
-            btnExDisconnect.Enabled = false;
-            btnExRemoveDevice.Enabled = false;
-        }
         private void ExRefresh(System.Windows.Forms.ComboBox comboBox)
         {
             List<String> list = UseADB("devices", false);
@@ -341,13 +283,17 @@ namespace ADBTool_Robotics
                 for (int i = 1; i < list.Count; i++)
                 {
                     String line = list[i].Trim();
-                    line = helperHandler.StringBeforeDelimiter(line, "device").Trim();
 
-                    if (line.Length > 0)
+                    if (!line.Contains("offline") && !line.Contains("unauthorized"))
                     {
-                        if (!line.Contains("."))
+                        line = helperHandler.StringBeforeDelimiter(line, "device").Trim();
+
+                        if (line.Length > 0)
                         {
-                            deviceHandler.AddDevice(new USBDevice(line));
+                            if (!line.Contains("."))
+                            {
+                                deviceHandler.AddDevice(new USBDevice(line));
+                            }
                         }
                     }
                 }
@@ -385,5 +331,13 @@ namespace ADBTool_Robotics
             return ReturnValue;
         }
         #endregion
+
+        private void btnDelDir_Click(object sender, EventArgs e)
+        {
+            DeleteDirectoryForm deleteDirectoryForm = new DeleteDirectoryForm();
+            deleteDirectoryForm.mainForm = this;
+            deleteDirectoryForm.selectedDevice = cboxExSelectedDevice.Text;
+            deleteDirectoryForm.ShowDialog();
+        }
     }
 }

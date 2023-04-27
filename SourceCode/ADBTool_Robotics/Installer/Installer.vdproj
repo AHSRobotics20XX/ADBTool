@@ -21,6 +21,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_24CA0B4DA74C440CB75FE8FF1047255A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3534D41D942C423F8FC313A6407C9C46"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_555D2E93F09B45B88CDE7383C9064223"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -39,13 +51,37 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BCEE0444E4714C9DB4C916218D426D49"
+        "MsmKey" = "8:_733B6DEBA2544328AAD446010657B2F3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_85648BF4D89441FD864EBCF760F741C9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_936F3E19BEF941C49E19BC5FBE0A13B4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C5080373FC994E9884573C60C2640993"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_CB457641932F496ABF643C2A1BE272AC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F9AC869B561E4E7BBBFA32C4F1A414DE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -99,7 +135,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\Installer.msi"
+        "OutputFilename" = "8:Release\\ADBTool_Installer.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -176,6 +212,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_24CA0B4DA74C440CB75FE8FF1047255A"
+            {
+            "SourcePath" = "8:..\\ADBTool\\Images\\Delete.png"
+            "TargetName" = "8:Delete.png"
+            "Tag" = "8:"
+            "Folder" = "8:_D05D7A2BE35D4CE889C54C66112C440D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3534D41D942C423F8FC313A6407C9C46"
+            {
+            "SourcePath" = "8:..\\ADBTool\\Images\\Connect.png"
+            "TargetName" = "8:Connect.png"
+            "Tag" = "8:"
+            "Folder" = "8:_D05D7A2BE35D4CE889C54C66112C440D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_555D2E93F09B45B88CDE7383C9064223"
             {
             "SourcePath" = "8:..\\ADBTool\\bin\\Debug\\net6.0-windows\\adb\\adb.exe"
@@ -216,12 +292,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BCEE0444E4714C9DB4C916218D426D49"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_733B6DEBA2544328AAD446010657B2F3"
             {
-            "SourcePath" = "8:..\\ADBTool\\Images\\App_Icons\\app_icon.ico"
+            "SourcePath" = "8:..\\ADBTool\\Images\\app_icon.ico"
             "TargetName" = "8:app_icon.ico"
             "Tag" = "8:"
-            "Folder" = "8:_8FD2A3EF128549CCA3B4438577A5EE50"
+            "Folder" = "8:_D05D7A2BE35D4CE889C54C66112C440D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_85648BF4D89441FD864EBCF760F741C9"
+            {
+            "SourcePath" = "8:..\\ADBTool\\Images\\Add.png"
+            "TargetName" = "8:Add.png"
+            "Tag" = "8:"
+            "Folder" = "8:_D05D7A2BE35D4CE889C54C66112C440D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_936F3E19BEF941C49E19BC5FBE0A13B4"
+            {
+            "SourcePath" = "8:..\\ADBTool\\Images\\Disconnect.png"
+            "TargetName" = "8:Disconnect.png"
+            "Tag" = "8:"
+            "Folder" = "8:_D05D7A2BE35D4CE889C54C66112C440D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C5080373FC994E9884573C60C2640993"
+            {
+            "SourcePath" = "8:..\\ADBTool\\Images\\Refresh.png"
+            "TargetName" = "8:Refresh.png"
+            "Tag" = "8:"
+            "Folder" = "8:_D05D7A2BE35D4CE889C54C66112C440D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -242,6 +378,26 @@
             "TargetName" = "8:AdbWinApi.dll"
             "Tag" = "8:"
             "Folder" = "8:_878C85534FED4EAFB761DC8DFC65AAA1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9AC869B561E4E7BBBFA32C4F1A414DE"
+            {
+            "SourcePath" = "8:..\\ADBTool\\Images\\Remove.png"
+            "TargetName" = "8:Remove.png"
+            "Tag" = "8:"
+            "Folder" = "8:_D05D7A2BE35D4CE889C54C66112C440D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -297,6 +453,18 @@
                 {
                 }
             }
+            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_D05D7A2BE35D4CE889C54C66112C440D"
+            {
+            "DefaultLocation" = "8:[TARGETDIR]\\Images"
+            "Name" = "8:Images"
+            "AlwaysCreate" = "11:TRUE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:TARGETDIRIMAGES"
+                "Folders"
+                {
+                }
+            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_D98FB6AC6CED4E9899F6CC0EA832617D"
             {
             "Name" = "8:#1919"
@@ -324,8 +492,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ADBTool"
-        "ProductCode" = "8:{3D9B1F50-8277-4DA2-B033-85A850C55335}"
-        "PackageCode" = "8:{45B2AD26-8BF7-45D1-AA19-6B2414CBA54E}"
+        "ProductCode" = "8:{2C95F666-D344-48EE-9720-6663BD3442A3}"
+        "PackageCode" = "8:{AB6FC413-ABD4-46D5-B200-1E2D769EC30C}"
         "UpgradeCode" = "8:{DD89D480-3C74-4CE3-B516-C25112C1F3F8}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -336,13 +504,13 @@
         "Manufacturer" = "8:AHS6545"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Installer"
+        "Title" = "8:ADBTool_Installer"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Marley"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_733B6DEBA2544328AAD446010657B2F3"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -456,7 +624,7 @@
             "Target" = "8:_6ABAAAED373241FCA4C3CE6B4E1F775B"
             "Folder" = "8:_6068A11E75674681852E6F93318A8EF4"
             "WorkingFolder" = "8:_8FD2A3EF128549CCA3B4438577A5EE50"
-            "Icon" = "8:_BCEE0444E4714C9DB4C916218D426D49"
+            "Icon" = "8:_733B6DEBA2544328AAD446010657B2F3"
             "Feature" = "8:"
             }
         }
